@@ -2,6 +2,7 @@ package books.example.controller;
 
 import books.example.model.Book;
 import books.example.repos.BooksRepo;
+import books.example.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +17,15 @@ public class MainController {
 
     @Autowired
     BooksRepo booksRepo;
+    @Autowired
+    UserRepo userRepo;
 
-    @GetMapping
+    @GetMapping("/")
+    public String index() {
+        return "index";
+    }
+
+    @GetMapping("/main")
     public String main(Map<String, Object> model) {
         Iterable<Book> books = booksRepo.findAll();
         model.put("books", books);
@@ -35,7 +43,7 @@ public class MainController {
         model.put("books", books);
         return "main";
     }
-    
+
     @PostMapping("delete")
     @Transactional
     public String delete(@RequestParam(name = "name") String name,
