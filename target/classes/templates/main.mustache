@@ -1,7 +1,25 @@
 <html>
 <body>
 <div>
-    Hello
+    <form method="post" action="add">
+        <input type="text" name="name" placeholder="Enter book name">
+        <input type="text" name="author" placeholder="Enter author">
+        <button type="submit"> Add</button>
+    </form>
 </div>
+<div>
+    <form method="post" action="delete">
+        <input type="text" name="name" placeholder="Enter book name">
+        <button type="submit"> Delete</button>
+    </form>
+</div>
+<div> Book list</div>
+{{#books}}
+    <div>
+        <b>{{id}}</b>
+        <span>{{name}}</span>
+        <span>{{author}}</span>
+    </div>
+{{/books}}
 </body>
 </html>
