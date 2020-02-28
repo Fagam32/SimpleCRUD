@@ -53,4 +53,17 @@ public class MainController {
         model.put("books", books);
         return "main";
     }
+
+    @PostMapping("filter")
+    public String filter(@RequestParam(name = "name") String name,
+                         Map<String, Object> model) {
+        Iterable<Book> books;
+        if (name != null)
+            books = booksRepo.findBookByNameStartingWith(name);
+        else
+            books = booksRepo.findAll();
+
+        model.put("books", books);
+        return "main";
+    }
 }

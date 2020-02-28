@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
 <body>
 <div>
     <form action="/logout" method="post">
@@ -6,28 +6,52 @@
         <input type="submit" value="Sign out">
     </form>
 </div>
+
 <div>
     <form method="post" action="add">
-        <input type="text" name="name" placeholder="Enter book name">
-        <input type="text" name="author" placeholder="Enter author">
+        <label>
+            <input type="text" name="name" placeholder="Enter book name">
+        </label>
+        <label>
+            <input type="text" name="author" placeholder="Enter author">
+        </label>
         <input type="hidden" name="_csrf" value="{{_csrf.token}}">
         <button type="submit"> Add</button>
     </form>
 </div>
 <div>
     <form method="post" action="delete">
-        <input type="text" name="name" placeholder="Enter book name">
+        <label>
+            <input type="text" name="name" placeholder="Enter book name">
+        </label>
         <input type="hidden" name="_csrf" value="{{_csrf.token}}">
         <button type="submit"> Delete</button>
     </form>
 </div>
-<div> Book list</div>
-{{#books}}
-    <div>
-        <b>{{id}}</b>
-        <span>{{name}}</span>
-        <span>{{author}}</span>
-    </div>
-{{/books}}
+<div>
+    <form method="post" action="filter">
+        <label>
+            <input type="text" name="name" placeholder="Enter book name">
+        </label>
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+        <button type="submit"> Filter</button>
+    </form>
+</div>
+
+
+<table cellspacing="7" border="1" title="Book list">
+    <tr>
+        <td><b>ID</b></td>
+        <td><b>Book name</b></td>
+        <td><b>Author</b></td>
+    </tr>
+    {{#books}}
+        <tr>
+            <td>{{id}}</td>
+            <td><span>{{name}}</span></td>
+            <td><span>{{author}}</span></td>
+        </tr>
+    {{/books}}
+</table>
 </body>
 </html>
